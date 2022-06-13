@@ -35,6 +35,7 @@ class AdminAuth {
 			});
 			if (!admin) {
 				throw {
+					name: "Unauthorized",
 					code: 401,
 					message: "Invalid email or password",
 				};
@@ -42,6 +43,7 @@ class AdminAuth {
 			const isValid = await comparePassword(password, admin.password);
 			if (!isValid) {
 				throw {
+					name: "Unauthorized",
 					code: 401,
 					message: "Invalid email or password",
 				};

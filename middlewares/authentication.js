@@ -26,6 +26,7 @@ async function authentication(req, res, next) {
 			id: user.id,
 			phoneNumber: user.phoneNumber,
 			role: user.role,
+			email: user.email,
 		};
 		next();
 	} catch (err) {

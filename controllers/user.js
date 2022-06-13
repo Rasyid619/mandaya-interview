@@ -40,7 +40,6 @@ class UserController {
 	static async userLogin(req, res, next) {
 		try {
 			const { phoneNumber, password } = req.body;
-			console.log(req.body);
 			const user = await User.findOne({
 				where: {
 					phoneNumber,
