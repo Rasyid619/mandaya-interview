@@ -49,6 +49,18 @@ module.exports = (sequelize, DataTypes) => {
 					},
 				},
 			},
+			description: {
+				type: DataTypes.TEXT,
+				allowNull: false,
+				validate: {
+					notEmpty: {
+						msg: "Description is required",
+					},
+					notNull: {
+						msg: "Description is required",
+					},
+				},
+			},
 		},
 		{
 			sequelize,

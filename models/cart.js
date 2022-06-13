@@ -9,10 +9,18 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			// define association here
+			Cart.belongsTo(models.User, { foreignKey: "UserId" });
+			Cart.belongsTo(models.Drug, { foreignKey: "DrugId" });
 		}
 	}
 	Cart.init(
 		{
+			id: {
+				allowNull: false,
+				autoIncrement: true,
+				primaryKey: true,
+				type: DataTypes.INTEGER,
+			},
 			DrugId: {
 				type: DataTypes.INTEGER,
 				allowNull: false,
@@ -31,7 +39,25 @@ module.exports = (sequelize, DataTypes) => {
 					},
 				},
 			},
-			status: DataTypes.STRING,
+			status: {
+				type: DataTypes.STRING,
+				defaultValue: "pending",
+				allowNull: false,
+				validate: {
+					notNull: {
+						msg: "status is required",
+					},
+				},
+			},
+			quantity: {
+				type: DataTypes.INTEGER,
+				allowNull: false,
+				validate: {
+					notNull: {
+						msg: "quantity is required",
+					},
+				},
+			},
 		},
 		{
 			sequelize,

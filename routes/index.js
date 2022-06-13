@@ -1,10 +1,16 @@
 const router = require("express").Router();
-const adminRoutes = require("./admin");
-const userRoute = require("./user");
-const drugRoute = require("./drug");
+const userRoutes = require("./user");
+const drugRoutes = require("./drug");
+const orderRoutes = require("./order");
+const AdminAuth = require("../controllers/adminAuth");
+const authentication = require("../middlewares/authentication");
+const OrderController = require("../controllers/order");
 
-router.use("/admin", adminRoutes);
-router.use("/user", userRoute);
-router.use("/drug", drugRoute);
+router.post("/register", AdminAuth.adminRegister);
+router.post("/login", AdminAuth.adminLogin);
+router.get("/orders", authentication, OrderController.getAllOrders);
+router.use("/users", userRoutes);
+router.use("/drugs", drugRoutes);
+router.use("/orders", orderRoutes);
 
 module.exports = router;
