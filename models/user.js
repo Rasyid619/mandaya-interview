@@ -29,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
 					isNumeric: {
 						msg: "Phone number must be number",
 					},
+					len: {
+						args: [11, 16],
+						msg: "Phone number must be 11 to 16 digits",
+					},
 				},
 			},
 			gender: {
@@ -100,8 +104,8 @@ module.exports = (sequelize, DataTypes) => {
 						msg: "Password is required",
 					},
 					is: {
-						args: /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.])[a-zA-Z0-9!@#$%^&*.]{6,}$/,
-						msg: "Password must be at least 6 characters and contain at least one number, one uppercase letter and one special character",
+						args: /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*.])[a-zA-Z0-9!@#$%^&*.]{8,}$/,
+						msg: "Password must be at least 8 characters and contain at least one number, one uppercase letter and one special character",
 					},
 				},
 			},
